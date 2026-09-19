@@ -1,6 +1,5 @@
-ARG BUILD_FROM
-FROM $BUILD_FROM
-ARG BUILD_FROM
+ARG BUILD_FROM=ghcr.io/home-assistant/aarch64-base:latest
+FROM ${BUILD_FROM}
 COPY config.json /
 RUN apk --no-cache add jq
 RUN NOAH_MQTT_VERSION=$(jq --raw-output '.version // empty' config.json) && case "$BUILD_FROM" in \
